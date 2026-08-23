@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="THERMOSAFE — Thermal Work Limit Monitoring System">
+
+    <title>THERMOSAFE | TWL Monitor</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+<body>
+
+    <!-- =====================================
+         BACKGROUND
+    ====================================== -->
+
+    <div class="background">
+
+        <div class="grid"></div>
+
+        <div class="scanlines"></div>
+
+        <div class="ambient ambient-one"></div>
+
+        <div class="ambient ambient-two"></div>
+
+    </div>
+
+
+
+    <!-- =====================================
+         SIDEBAR
+    ====================================== -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <div class="brand-mark">
+                TS
+            </div>
+
+            <div>
+
+                <strong>
+                    THERMOSAFE
+                </strong>
+
+                <span>
+                    INDUSTRIAL HSE
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <nav>
+
+            <button class="nav-item active">
+
+                <span>◉</span>
+
+                Overview
+
+            </button>
+
+
+            <button class="nav-item">
+
+                <span>◌</span>
+
+                Live Monitor
+
+            </button>
+
+
+            <button class="nav-item">
+
+                <span>⌁</span>
+
+                Analytics
+
+            </button>
+
+
+            <button class="nav-item">
+
+                <span>⚠</span>
+
+                Alerts
+
+                <b class="alert-count">
+                    2
+                </b>
+
+            </button>
+
+
+            <button class="nav-item">
+
+                <span>▣</span>
+
+                Work Areas
+
+            </button>
+
+
+            <button class="nav-item">
+
+                <span>◫</span>
+
+                Reports
+
+            </button>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <div class="connection">
+
+                <span class="connection-dot"></span>
+
+                <div>
+
+                    <strong>
+                        SYSTEM ONLINE
+                    </strong>
+
+                    <small>
+                        Sensor network connected
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <button class="settings">
+
+                ⚙
+
+                Settings
+
+            </button>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =====================================
+         MAIN
+    ====================================== -->
+
+    <main class="main">
+
+
+        <!-- HEADER -->
+
+        <header class="topbar">
+
+            <div>
+
+                <span class="page-label">
+                    THERMAL SAFETY CONTROL
+                </span>
+
+                <h1>
+                    Operations Overview
+                </h1>
+
+            </div>
+
+
+            <div class="top-actions">
+
+                <div class="site-selector">
+
+                    <span>
+                        SITE
+                    </span>
+
+                    <strong>
+                        Dubai Industrial Zone
+                    </strong>
+
+                    <span>
+                        ▾
+                    </span>
+
+                </div>
+
+
+                <div class="live-status">
+
+                    <span></span>
+
+                    LIVE
+
+                </div>
+
+
+                <div class="time"
+                     id="currentTime">
+
+                    --:--
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =====================================
+             MAIN TWL PANEL
+        ====================================== -->
+
+        <section class="hero-grid">
+
+
+            <!-- TWL GAUGE -->
+
+            <article class="twl-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <span class="card-label">
+                            THERMAL WORK LIMIT
+                        </span>
+
+                        <h2>
+                            Current Condition
+                        </h2>
+
+                    </div>
+
+
+                    <div class="sensor-state">
+
+                        <span></span>
+
+                        SENSOR FEED
+
+                    </div>
+
+                </div>
+
+
+                <div class="twl-display">
+
+                    <div class="gauge">
+
+                        <div class="gauge-ring">
+
+                            <div class="gauge-inner">
+
+                                <span
+                                    class="twl-value"
+                                    id="twlValue">
+                                    --
+                                </span>
+
+                                <span class="twl-unit">
+                                    W/m²
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="twl-status">
+
+                        <div
+                            class="status-indicator"
+                            id="statusIndicator">
+                        </div>
+
+                        <strong id="twlStatus">
+                            CALCULATING
+                        </strong>
+
+                        <span id="statusDescription">
+                            Awaiting validated environmental data
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="twl-scale">
+
+                    <div>
+                        <span></span>
+                        RESTRICTED
+                    </div>
+
+                    <div>
+                        <span></span>
+                        BUFFER
+                    </div>
+
+                    <div>
+                        <span></span>
+                        ACCLIMATIZATION
+                    </div>
+
+                    <div>
+                        <span></span>
+                        UNRESTRICTED
+                    </div>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- SITE STATUS -->
+
+            <article class="status-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <span class="card-label">
+                            WORK AREA
+                        </span>
+
+                        <h2>
+                            Site Status
+                        </h2>
+
+                    </div>
+
+                    <span class="more">
+                        •••
+                    </span>
+
+                </div>
+
+
+                <div class="site-status">
+
+                    <div class="large-status">
+                        <span id="siteStatusDot"></span>
+
+                        <strong id="siteStatus">
+                            MONITORING
+                        </strong>
+                    </div>
+
+
+                    <p id="siteMessage">
+                        Environmental conditions are
+                        being evaluated.
+                    </p>
+
+
+                    <div class="status-divider"></div>
+
+
+                    <div class="status-row">
+
+                        <span>
+                            Current Zone
+                        </span>
+
+                        <strong id="workZone">
+                            —
+                        </strong>
+
+                    </div>
+
+
+                    <div class="status-row">
+
+                        <span>
+                            Last Reading
+                        </span>
+
+                        <strong id="lastReading">
+                            —
+                        </strong>
+
+                    </div>
+
+
+                    <div class="status-row">
+
+                        <span>
+                            Sensor Health
+                        </span>
+
+                        <strong class="healthy">
+                            ● NOMINAL
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+        </section>
+
+
+
+        <!-- =====================================
+             ENVIRONMENTAL TELEMETRY
+        ====================================== -->
+
+        <section class="section">
+
+            <div class="section-title">
+
+                <div>
+
+                    <span>
+                        ENVIRONMENTAL TELEMETRY
+                    </span>
+
+                    <h2>
+                        Live Conditions
+                    </h2>
+
+                </div>
+
+
+                <div class="updated">
+
+                    LAST UPDATE
+
+                    <strong id="lastUpdate">
+                        —
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="telemetry-grid">
+
+
+                <!-- AIR -->
+
+                <article class="metric-card">
+
+                    <div class="metric-top">
+
+                        <span class="metric-icon">
+                            °C
+                        </span>
+
+                        <span class="metric-name">
+                            AIR TEMPERATURE
+                        </span>
+
+                    </div>
+
+
+                    <strong
+                        class="metric-value"
+                        id="airTemp">
+                        —
+                    </strong>
+
+
+                    <span class="metric-unit">
+                        degrees Celsius
+                    </span>
+
+
+                    <div class="metric-line">
+
+                        <div></div>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- GLOBE -->
+
+                <article class="metric-card">
+
+                    <div class="metric-top">
+
+                        <span class="metric-icon">
+                            ◉
+                        </span>
+
+                        <span class="metric-name">
+                            GLOBE TEMPERATURE
+                        </span>
+
+                    </div>
+
+
+                    <strong
+                        class="metric-value"
+                        id="globeTemp">
+                        —
+                    </strong>
+
+
+                    <span class="metric-unit">
+                        radiant heat indicator
+                    </span>
+
+
+                    <div class="metric-line">
+
+                        <div></div>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- WET BULB -->
+
+                <article class="metric-card">
+
+                    <div class="metric-top">
+
+                        <span class="metric-icon">
+                            💧
+                        </span>
+
+                        <span class="metric-name">
+                            WET BULB
+                        </span>
+
+                    </div>
+
+
+                    <strong
+                        class="metric-value"
+                        id="wetBulb">
+                        —
+                    </strong>
+
+
+                    <span class="metric-unit">
+                        degrees Celsius
+                    </span>
+
+
+                    <div class="metric-line">
+
+                        <div></div>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- WIND -->
+
+                <article class="metric-card">
+
+                    <div class="metric-top">
+
+                        <span class="metric-icon">
+                            ≋
+                        </span>
+
+                        <span class="metric-name">
+                            WIND SPEED
+                        </span>
+
+                    </div>
+
+
+                    <strong
+                        class="metric-value"
+                        id="windSpeed">
+                        —
+                    </strong>
+
+
+                    <span class="metric-unit">
+                        metres / second
+                    </span>
+
+
+                    <div class="metric-line">
+
+                        <div></div>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- PRESSURE -->
+
+                <article class="metric-card">
+
+                    <div class="metric-top">
+
+                        <span class="metric-icon">
+                            ⌁
+                        </span>
+
+                        <span class="metric-name">
+                            PRESSURE
+                        </span>
+
+                    </div>
+
+
+                    <strong
+                        class="metric-value"
+                        id="pressure">
+                        —
+                    </strong>
+
+
+                    <span class="metric-unit">
+                        kilopascals
+                    </span>
+
+
+                    <div class="metric-line">
+
+                        <div></div>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- HUMIDITY -->
+
+                <article class="metric-card">
+
+                    <div class="metric-top">
+
+                        <span class="metric-icon">
+                            %
+                        </span>
+
+                        <span class="metric-name">
+                            RELATIVE HUMIDITY
+                        </span>
+
+                    </div>
+
+
+                    <strong
+                        class="metric-value"
+                        id="humidity">
+                        —
+                    </strong>
+
+
+                    <span class="metric-unit">
+                        relative humidity
+                    </span>
+
+
+                    <div class="metric-line">
+
+                        <div></div>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             TREND + ALERTS
+        ====================================== -->
+
+        <section class="analytics-grid">
+
+
+            <!-- TREND -->
+
+            <article class="chart-card">
+
+                <div class="section-title">
+
+                    <div>
+
+                        <span>
+                            THERMAL TREND
+                        </span>
+
+                        <h2>
+                            TWL History
+                        </h2>
+
+                    </div>
+
+
+                    <select id="rangeSelect">
+
+                        <option>
+                            24 Hours
+                        </option>
+
+                        <option>
+                            7 Days
+                        </option>
+
+                        <option>
+                            30 Days
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="chart">
+
+                    <div class="chart-grid"></div>
+
+                    <div class="chart-placeholder">
+
+                        <span>
+                            Awaiting live data
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- ALERTS -->
+
+            <article class="alerts-card">
+
+                <div class="section-title">
+
+                    <div>
+
+                        <span>
+                            SAFETY EVENTS
+                        </span>
+
+                        <h2>
+                            Alerts
+                        </h2>
+
+                    </div>
+
+
+                    <span class="alert-count-large">
+                        2
+                    </span>
+
+                </div>
+
+
+                <div class="alert-list">
+
+                    <div class="alert-item">
+
+                        <div class="alert-icon warning">
+                            !
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Monitoring required
+                            </strong>
+
+                            <span>
+                                Environmental data
+                                requires evaluation.
+                            </span>
+
+                        </div>
+
+                        <time>
+                            NOW
+                        </time>
+
+                    </div>
+
+
+                    <div class="alert-item">
+
+                        <div class="alert-icon info">
+                            i
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                System initialized
+                            </strong>
+
+                            <span>
+                                Sensor connection
+                                established.
+                            </span>
+
+                        </div>
+
+                        <time>
+                            SYSTEM
+                        </time>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+        </section>
+
+
+
+        <!-- =====================================
+             FOOTER
+        ====================================== -->
+
+        <footer>
+
+            <div>
+
+                <strong>
+                    THERMOSAFE
+                </strong>
+
+                <span>
+                    Thermal Work Limit Monitoring
+                </span>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    DATA STATUS:
+                </span>
+
+                <strong class="footer-online">
+                    ● CONNECTED
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    Prototype / Decision Support
+                </span>
+
+            </div>
+
+        </footer>
+
+    </main>
+
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
